@@ -1,11 +1,14 @@
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".card").forEach((el, i) => {
-    el.style.opacity = 0;
-    el.style.transform = "translateY(10px)";
-    setTimeout(() => {
-      el.style.transition = "0.4s ease";
-      el.style.opacity = 1;
-      el.style.transform = "translateY(0)";
-    }, 150 + i * 120);
+// Reveal sections on scroll
+function revealOnScroll() {
+  const reveals = document.querySelectorAll(".reveal");
+  reveals.forEach((el) => {
+    const windowHeight = window.innerHeight;
+    const elementTop = el.getBoundingClientRect().top;
+    if (elementTop < windowHeight - 100) {
+      el.classList.add("show");
+    }
   });
-});
+}
+
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
