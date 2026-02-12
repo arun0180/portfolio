@@ -1,14 +1,16 @@
-// Reveal sections on scroll
-function revealOnScroll() {
+const revealOnScroll = () => {
   const reveals = document.querySelectorAll(".reveal");
-  reveals.forEach((el) => {
-    const windowHeight = window.innerHeight;
-    const elementTop = el.getBoundingClientRect().top;
-    if (elementTop < windowHeight - 100) {
-      el.classList.add("show");
+  const triggerBottom = (window.innerHeight / 5) * 4;
+
+  reveals.forEach((box) => {
+    const boxTop = box.getBoundingClientRect().top;
+    if (boxTop < triggerBottom) {
+      box.classList.add("show");
     }
   });
-}
+};
 
+// Listen for scroll
 window.addEventListener("scroll", revealOnScroll);
-window.addEventListener("load", revealOnScroll);
+// Initial check
+window.addEventListener("DOMContentLoaded", revealOnScroll);
